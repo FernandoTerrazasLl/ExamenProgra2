@@ -74,7 +74,7 @@ class Juego
     }
     public bool verificarMovimientoPermitido(String[]panelJuego, int opcionCasilla)
     {
-        if(panelJuego[opcionCasilla] == "X" || panelJuego[opcionCasilla] == "O")
+        if(panelJuego[opcionCasilla] == "X" || panelJuego[opcionCasilla] == "O" )
         {
             Console.WriteLine("La casilla seleccionada ya esta ocupada, por favor seleccione otra casilla");
             return false;

@@ -10,9 +10,10 @@ internal class Inferfaz
     private String[] panelJuego;
     private JugadorIA jugadorIA;
     private Juego juego;
+    private JudagorTresEnRaya jugadorTresEnRaya;
     public Inferfaz()
     {
-        Random rnd = new Random();
+        jugadorTresEnRaya = new JudagorTresEnRaya();    
         panelJuego = new String[9];
         jugadorIA = new JugadorIA();
         juego = new Juego();
@@ -26,11 +27,14 @@ internal class Inferfaz
     {
         bienvenida();
         inferfazGrafica();
-
     }
     public void bienvenida()
     {
         Console.WriteLine("Bienvenido al juego de tres en raya");
+        Console.WriteLine("Ingrese su nombre jugador");
+        String nombre = Console.ReadLine();
+        Console.WriteLine("Hola " + nombre);
+        jugadorTresEnRaya.setNombre(nombre);
         Console.WriteLine("Para jugar, ingrese el número de la casilla donde desea colocar su ficha");
         Console.WriteLine("El tablero tiene la siguiente estructura:");
         Console.WriteLine("0|1|2");
@@ -55,18 +59,17 @@ internal class Inferfaz
                     Console.WriteLine("Haz perdido el juego");
                     break;
                 }
-
                 mostrarPanelJuego(panelJuego);
                 while (true)
                 {
+                       
                     int casilla = 0;
+
                     Console.WriteLine("El tablero tiene la siguiente estructura:");
                     Console.WriteLine("0|1|2");
                     Console.WriteLine("3|4|5");
                     Console.WriteLine("6|7|8");
-                    Console.WriteLine("Presione el numero de casilla que desea selecionar para continuar");
-                    
-                    String NumeroCasilla = Console.ReadLine();
+                    string NumeroCasilla =jugadorTresEnRaya.jugar();
                     if (int.TryParse(NumeroCasilla, out casilla))
                     {
                         if (!juego.verificarMovimientoPermitido(panelJuego, casilla))
@@ -89,16 +92,14 @@ internal class Inferfaz
                         Console.WriteLine("El valor ingresado no es un numero");
                         continue;
                     }
-                   
-                }
+                }   
                 mostrarPanelJuego(panelJuego);
                 
                 Console.WriteLine("A continuacion jugara la IA");
-                int OpcionIA = jugadorIA.jugar(panelJuego);
+                int OpcionIA = jugadorIA.jugarIA(panelJuego);
                 panelJuego[OpcionIA] = "O";
+                
             }
-
-
             Console.WriteLine("El juego ha terminado en Empate");
             while (true)
             {
@@ -121,7 +122,6 @@ internal class Inferfaz
                     Console.WriteLine("ingresa una opcion valida");
                 }
             }
-   
         }
     }
     public void mostrarPanelJuego(string[] panelJuego)
@@ -139,5 +139,4 @@ internal class Inferfaz
             }
         }
     }
-    
 }

@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-class JugadorIA
+class JugadorIA:Jugador
 {
     Juego juego;
     public JugadorIA()
     {
         juego = new Juego();
+        setNombre("Tomy");
     }
 
-    public int jugar(string[] panelJuego)
+    public int jugarIA(string[] panelJuego)
     {
         while (true)
         {
