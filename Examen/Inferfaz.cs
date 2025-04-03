@@ -72,15 +72,16 @@ internal class Inferfaz
                     string NumeroCasilla =jugadorTresEnRaya.jugar();
                     if (int.TryParse(NumeroCasilla, out casilla))
                     {
-                        if (!juego.verificarMovimientoPermitido(panelJuego, casilla))
-                        {
-                            continue;
-                        }
                         if (casilla >= 0 && casilla < 9)
                         {
                             panelJuego[casilla] = "X";
                             break;
                         }
+                        if (!juego.verificarMovimientoPermitido(panelJuego, casilla))
+                        {
+                            continue;
+                        }
+                        
                         else
                         {
                             Console.WriteLine("El numero de casilla ingresado no es valido");
